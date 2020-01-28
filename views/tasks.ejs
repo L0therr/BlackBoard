@@ -1,0 +1,59 @@
+<%- include('header'); %>
+<%- include('sidebar'); %>
+      
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <div class="list-group">
+
+          <%for(var i=0;i<users.length;i++) {
+              for(var j=0;j<users[i].tasks.length;j++) { 
+                var due =  dateForm(users[i].tasks[j].dateDue);
+                var cloture = users[i].tasks[j].dateCloture;
+                var insert = dateForm(users[i].tasks[j].dateInsert);
+                var category = users[i].tasks[j].category;
+                var name = users[i].tasks[j].name;
+                 %>
+
+            <a href="#" class="list-group-item list-group-item-action
+                        <%if (cloture){%> <%='list-group-item-success'%>
+                 <%} else if (due < new Date()){%> <%='list-group-item-danger'%> <%} else {%> <%=''%> <%}%>">
+              
+                 <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1"><%= category %></h5>
+                  <small>Date de la demande: <%= insert %></small>
+                </div>
+
+                <%var information = "Echéance: " + due;
+                  var icoClass;
+                  if(cloture){
+                    information = "Cloturé le " + dateForm(cloture);
+                    icoClass = "fas fa-check-square";
+                  } else if(!cloture && new Date() > due){
+                    information = "Echeance dépassée : "+ due;
+                    icoClass = "fas fa-exclamation-circle";
+                  }%>
+                <p class="mb-1"><%= name %></p>
+                <small><i class="<%= icoClass %>"></i><%= information %></small>
+            </a>
+        <% }
+          } %>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Blackboard</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <%- include('footer'); %>
