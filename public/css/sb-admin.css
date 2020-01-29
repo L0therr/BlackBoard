@@ -410,3 +410,11 @@ body.sidebar-toggled footer.sticky-footer {
     background-color: rgb(228, 135, 135);
     color: white;
 }
+
+.chartTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-weight: bold;
+}

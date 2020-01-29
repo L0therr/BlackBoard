@@ -26,14 +26,14 @@
                 <%var information = "Echéance: " + due;
                   var icoClass;
                   if(cloture){
-                    information = "Cloturé le " + dateForm(cloture);
+                    information = " Cloturé le " + dateForm(cloture);
                     icoClass = "fas fa-check-square";
                   } else if(!cloture && new Date() > due){
-                    information = "Echeance dépassée : "+ due;
+                    information = " Echeance dépassée : "+ due;
                     icoClass = "fas fa-exclamation-circle";
                   }%>
                 <p class="mb-1"><%= name %></p>
-                <small><i class="<%= icoClass %>"></i><%= information %></small>
+                <small><i class='<%=icoClass%>'></i><%= information %></small>
             </a>
         <% }
           } %>
